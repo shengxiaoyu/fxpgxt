@@ -1,6 +1,6 @@
 node {
     stage('SCM') {
-        git 'https://github.com/example/MavenDemo.git'
+        git 'https://github.com/shengxiaoyu/fxpgxt.git'
     }
     stage('QA') {
         sh 'sonar-scanner'

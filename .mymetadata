@@ -1,13 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project-module
-  type="WEB"
-  name="fxpgxt"
-  id="myeclipse.1478773450194"
-  context-root="/fxpgxt"
-  j2ee-spec="6.0"
-  archive="fxpgxt.war">
+<project-module type="WEB" name="ApplicationIntegration" id="ApplicationIntegration" context-root="/ApplicationIntegration" j2ee-spec="5.0" archive="ApplicationIntegration.war">
   <attributes>
-    <attribute name="webrootdir" value="src/main/webapp" />
+    <attribute name="webrootdir" value="src/main/webapp"/>
   </attributes>
 </project-module>
-

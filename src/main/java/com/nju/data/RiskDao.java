@@ -14,12 +14,12 @@ public class RiskDao {
 	private static List<Risk> list = new ArrayList<Risk>() ;
 	
     static {
-    	Risk r1 = new Risk(0, "risk1", "≤‚ ‘∑Áœ’1", "1", "50%", "50%", "testOne", "testTwo", "2016/11/10") ;
-    	Risk r2 = new Risk(0, "risk1", "≤‚ ‘∑Áœ’2", "2", "50%", "50%", "testOne", "testTwo", "2016/11/10") ;
-    	Risk r3 = new Risk(0, "risk1", "≤‚ ‘∑Áœ’3", "3", "50%", "50%", "testOne", "testTwo", "2016/11/10") ;
-    	Risk r4 = new Risk(0, "risk1", "≤‚ ‘∑Áœ’4", "4", "50%", "50%", "testTwo", "testOne", "2016/11/11") ;
-    	Risk r5 = new Risk(0, "risk1", "≤‚ ‘∑Áœ’5", "5", "50%", "50%", "testTwo", "testOne", "2016/11/12") ;
-    	Risk r6 = new Risk(0, "risk1", "≤‚ ‘∑Áœ’6", "6", "50%", "50%", "testTwo", "testOne", "2016/11/13") ;
+    	Risk r1 = new Risk(0, "risk1", "risk1", "1", "50%", "50%", "testOne", "testTwo", "2016/11/10") ;
+    	Risk r2 = new Risk(0, "risk1", "risk1", "2", "50%", "50%", "testOne", "testTwo", "2016/11/10") ;
+    	Risk r3 = new Risk(0, "risk1", "risk1", "3", "50%", "50%", "testOne", "testTwo", "2016/11/10") ;
+    	Risk r4 = new Risk(0, "risk1", "risk1", "4", "50%", "50%", "testTwo", "testOne", "2016/11/11") ;
+    	Risk r5 = new Risk(0, "risk1", "risk1", "5", "50%", "50%", "testTwo", "testOne", "2016/11/12") ;
+    	Risk r6 = new Risk(0, "risk1", "risk1", "6", "50%", "50%", "testTwo", "testOne", "2016/11/13") ;
     	list.add(r1) ;
     	list.add(r2) ;
     	list.add(r3) ;

@@ -1,9 +1,10 @@
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <head>
     <title>风险评估系统</title>
-    <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./assets/css/bootstrap.min.css">
     <style>
         body { padding-top: 100px; }
         .user-icon {
@@ -23,21 +24,18 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">风险管理系统</a>
+            <a class="navbar-brand" href="#">欢迎使用风险评估系统</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav">
-                <li class="active"><a href="/index">首页 <span class="sr-only">(current)</span></a></li>
-            </ul>
             <form class="navbar-form navbar-left" role="search">
                 <a class="btn btn-default" href="#" data-toggle="modal" data-target="#addRiskModal">添加风险</a>
             </form>
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><img
-                            src="/assets/img/user.jpg" alt="用户" class="user-icon"> <span class="caret"></span></a>
+                            src="./assets/img/user.jpg" alt="用户" class="user-icon"> <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a href="#">个人中心</a></li>
                         <li><a href="/logout">退出</a></li>
@@ -67,6 +65,16 @@
                     </tr>
                     </thead>
                     <tbody id="risk-list">
+                    	<c:forEach items="${riskList }" var="risk">
+                    	<tr>
+                    		<td>${risk.riskId }</td>
+                    		<td>${risk.riskName }</td>
+                    		<td>${risk.reskCreator }</td>
+                    		<td>${risk.riskCreatedTime }</td>
+                    		<td>${risk.riskFollower }</td>
+                    		<td>删除</td>
+                    	</tr>
+                    	</c:forEach>
                     </tbody>
                 </table>
             </div>

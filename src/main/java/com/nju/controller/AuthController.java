@@ -38,7 +38,7 @@ public class AuthController {
         System.out.println(username);
         System.out.println(password);
         if(password.equals(studentService.getStudentPass(username))){
-        	System.out.println("µÇÂ½³É¹¦");
+        	System.out.println("login success");
             return "redirect:main";
         }
         return "login";

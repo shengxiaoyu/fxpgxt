@@ -12,12 +12,12 @@
 
     <context:annotation-config />
     <context:component-scan base-package="com.nju.*" />
-
+<!--  
     <bean id="propertyConfigurer"
           class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
         <property name="location" value="classpath:jdbc.properties" />
     </bean>
-<!-- 
+ 
     <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
           destroy-method="close">
         <property name="driverClassName" value="${jdbc.driver}" />
@@ -49,15 +49,16 @@
     <bean id="transactionManager"
           class="org.springframework.orm.hibernate4.HibernateTransactionManager">
         <property name="sessionFactory" ref="sessionFactory" />
-    </bean> -->
-	<bean id="sessionFactory"
+    </bean> 
+-->
+<bean id="sessionFactory"
           class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
-          <property name="hibernateProperties">
+           <property name="hibernateProperties">
             <props>
                 <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
-            </props>
-        </property>
-     </bean>
+                </props>
+                </property>
+                </bean>
     <tx:annotation-driven />
 	<!--  <bean id="studentDao" class="com.nju.dao.StudentDao">
 	</bean>

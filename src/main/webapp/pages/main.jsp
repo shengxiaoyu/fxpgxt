@@ -2,7 +2,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>A学院选课</title>
+    <title>风险评估系统</title>
     <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
     <style>
         body { padding-top: 100px; }
@@ -30,13 +30,8 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
                 <li class="active"><a href="/index">首页 <span class="sr-only">(current)</span></a></li>
-                <%--<li><a href="/course">我的选课</a></li>--%>
-                <%--<li><a href="/students">所有学生</a></li>--%>
             </ul>
             <form class="navbar-form navbar-left" role="search">
-                <%--<div class="form-group">--%>
-                    <%--<input type="text" class="form-control" placeholder="Search">--%>
-                <%--</div>--%>
                 <a class="btn btn-default" href="#" data-toggle="modal" data-target="#addRiskModal">添加风险</a>
             </form>
             <ul class="nav navbar-nav navbar-right">
@@ -49,8 +44,8 @@
                     </ul>
                 </li>
             </ul>
-        </div><!-- /.navbar-collapse -->
-    </div><!-- /.container-fluid -->
+        </div>
+    </div>
 </nav>
 
 <div class="container-fluid">

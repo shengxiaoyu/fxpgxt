@@ -1,15 +1,14 @@
 package com.nju.service.impl;
 
-import com.nju.dao.RiskDao;
+import com.nju.data.RiskDao;
 import com.nju.model.Risk;
 import com.nju.service.RiskService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-/**
- * Created by Zongyi on 2016/11/10.
- */
+@Service
 public class RiskServiceImpl implements RiskService{
     @Autowired
     private RiskDao riskDao;

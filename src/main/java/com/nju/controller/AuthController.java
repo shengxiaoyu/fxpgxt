@@ -39,7 +39,9 @@ public class AuthController {
         System.out.println(password);
         if(password.equals(studentService.getStudentPass(username))){
         	System.out.println("login success");
-            return "redirect:main";
+        	List<Risk> riskList = riskService.getAllRisks() ;
+        	model.addAttribute("riskList", riskList) ;
+            return "main";
         }
         return "login";
     }

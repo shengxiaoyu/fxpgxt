@@ -14,6 +14,7 @@
 			<value>org.springframework.web.servlet.view.JstlView</value>
 		</property>
 		<property name="prefix">
+			<value>/pages/</value>
 		</property>
 		<property name="suffix">
 			<value>.jsp</value>

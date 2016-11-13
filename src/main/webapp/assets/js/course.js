@@ -1,6 +1,3 @@
-/**
- * Created by 传旺 on 2016/6/6.
- */
 
 /**
  * 初始化选课模态框
@@ -67,7 +64,7 @@ function loadDropModal() {
 
         $('#follow-btn')[0].onclick = function () {
             $.ajax({
-                url:"/getRisk",
+                url:"getRisk.aj",
                 type:"post",
                 data:{
                     risk_id:riskId,
@@ -105,7 +102,7 @@ function loadAddModal() {
 
 
             $.ajax({
-                url:"/addRisk",
+                url:"addRisk.aj",
                 type:"post",
                 data:{
                     riskId:riskId,
@@ -166,7 +163,7 @@ function loadAddModal() {
 
 function loadCourses() {
     $.ajax({
-        url:"/getAllRisks",
+        url:"getAllRisks.aj",
         type:"post",
         data:{
 
@@ -200,6 +197,7 @@ function loadCourses() {
                 courseList.append(content);
 
             }
+            courseList.append('<tr> <td colspan="6"><a class="btn btn-default" href="#" data-toggle="modal" data-target="#addRiskModal">添加风险</a></td></tr>') ;
         }
 
     });
@@ -230,7 +228,7 @@ function deleteRisk(){
         var riskId = $('#deleteRiskSpan').text()
 
         $.ajax({
-            url:"/deleteRisk",
+            url:"deleteRisk.aj",
             type:"post",
             data:{
                 risk_id:riskId
@@ -250,11 +248,25 @@ function followRisk() {
 
     $('#follow-btn')[0].onclick = function () {
         var riskId= $("#showRisk-id").val()
+        var riskName= $("#showRisk-name").val()
+        var riskPossibility= $("#showRisk-possibility").val()
+        var riskLevel= $("#showRisk-level").val()
+        var riskGate= $("#showRisk-gate").val()
+        var riskCreator= $("#showRisk-creator").val()
+        var riskFollower= $("#showRisk-follower").val()
+        var riskContent= $("#showRisk-content").val()
             $.ajax({
-                url:"/followRisk",
+                url:"followRisk.aj",
                 type:"post",
                 data:{
-                    risk_id:riskId
+                    id:riskId ,
+                    name:riskName ,
+                    possibility:riskPossibility,
+                    level:riskLevel ,
+                    gate:riskGate ,
+                    creator:riskCreator ,
+                    follower:riskFollower ,
+                    content:riskContent 
                 },
                 success:function (data) {
                     if(data){
@@ -277,7 +289,7 @@ function followRisk() {
 
 function getMyCourses() {
     $.ajax({
-        url:"/getMyCourses",
+        url:"getMyCourses.aj",
         type:"post",
         success:function (data) {
             var courseList = $("#course-list");
@@ -312,7 +324,7 @@ function getMyCourses() {
 
 function getAllStudents() {
     $.ajax({
-        url:"/getAllStudents",
+        url:"getAllStudents.aj",
         type:"post",
         success:function (data) {
             var studentList = $("#student-list");

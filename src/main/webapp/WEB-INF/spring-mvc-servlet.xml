@@ -25,7 +25,9 @@
         <property name="maxUploadSize" value="10485760000" />
         <property name="maxInMemorySize" value="40960" />
     </bean>
-
+	<bean id="urlMapping"
+		class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+	</bean>
     <mvc:annotation-driven/>
     <mvc:resources mapping="/assets/**" location="/assets/"/>
 

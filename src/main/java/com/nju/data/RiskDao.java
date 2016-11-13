@@ -1,7 +1,11 @@
 package com.nju.data;
 
 import com.nju.model.Risk;
+import com.nju.model.Student;
+
 import org.springframework.stereotype.Repository;
+
+import util.IOHelper;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -11,28 +15,24 @@ import java.util.List;
 
 @Repository
 public class RiskDao {
-	private static List<Risk> list = new ArrayList<Risk>() ;
+	private static ArrayList<Risk> list = new ArrayList<Risk>() ;
 	
     static {
-    	Risk r1 = new Risk(0, "risk1", "risk1", "1", "50%", "50%", "testOne", "testTwo", "2016/11/10") ;
-    	Risk r2 = new Risk(0, "risk1", "risk1", "2", "50%", "50%", "testOne", "testTwo", "2016/11/10") ;
-    	Risk r3 = new Risk(0, "risk1", "risk1", "3", "50%", "50%", "testOne", "testTwo", "2016/11/10") ;
-    	Risk r4 = new Risk(0, "risk1", "risk1", "4", "50%", "50%", "testTwo", "testOne", "2016/11/11") ;
-    	Risk r5 = new Risk(0, "risk1", "risk1", "5", "50%", "50%", "testTwo", "testOne", "2016/11/12") ;
-    	Risk r6 = new Risk(0, "risk1", "risk1", "6", "50%", "50%", "testTwo", "testOne", "2016/11/13") ;
-    	list.add(r1) ;
-    	list.add(r2) ;
-    	list.add(r3) ;
-    	list.add(r4) ;
-    	list.add(r5) ;
-    	list.add(r6) ;
-    	
+    	Risk r1 = new Risk(1, "riskName", "riskContent", "riskLevel", "riskPossibility", "riskGate", "riskCreator", "riskFollower", "riskCreatedTime") ;
+    	Risk r2 = new Risk(2, "risk1", "test1", "high", "high", "50%", "root", "root", "2016/11/10") ;
+    	Risk r3 = new Risk(3, "risk2", "test3", "low", "low", "70%", "test", "test", "2016/11/11") ;
+		list.add(r1) ;
+		list.add(r2) ;
+		list.add(r3) ;
+//		IOHelper.saveObject((ArrayList)list, "student.txt", Risk.class) ;
     }
 
     Connection conn = null;
     Statement stmt = null;
-
-    public List<Risk> getAllRisks() {
+    public int getMaxId(){
+    	return list.size() ;
+    }
+    public ArrayList<Risk> getAllRisks() {
 //        System.out.println("111");
 //        List<Risk> res = new ArrayList<Risk>();
 //        //res.addAll(req.getMyOtherCourses(studentId));
@@ -132,4 +132,16 @@ public class RiskDao {
     	}
     	return therisk ;
     }
+	public void update(Risk risk) {
+		// TODO Auto-generated method stub
+		Risk theRisk = null ;
+		for(Risk therisk:list){
+			if(risk.getRiskId()==therisk.getRiskId()){
+				theRisk = therisk ;
+				break ;
+			}
+		}
+		list.remove(theRisk) ;
+		list.add(risk) ;
+	}
 }

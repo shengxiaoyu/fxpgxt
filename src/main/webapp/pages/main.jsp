@@ -29,16 +29,13 @@
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <form class="navbar-form navbar-left" role="search">
-                <a class="btn btn-default" href="#" data-toggle="modal" data-target="#addRiskModal">添加风险</a>
-            </form>
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><img
                             src="./assets/img/user.jpg" alt="用户" class="user-icon"> <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a href="#">个人中心</a></li>
-                        <li><a href="/logout">退出</a></li>
+                        <li><a href="logout.do">退出</a></li>
                     </ul>
                 </li>
             </ul>
@@ -65,16 +62,7 @@
                     </tr>
                     </thead>
                     <tbody id="risk-list">
-                    	<c:forEach items="${riskList }" var="risk">
-                    	<tr>
-                    		<td>${risk.riskId }</td>
-                    		<td>${risk.riskName }</td>
-                    		<td>${risk.reskCreator }</td>
-                    		<td>${risk.riskCreatedTime }</td>
-                    		<td>${risk.riskFollower }</td>
-                    		<td>删除</td>
-                    	</tr>
-                    	</c:forEach>
+                    	
                     </tbody>
                 </table>
             </div>
@@ -164,27 +152,27 @@
                     </div>
                     <div class="form-group">
                         <label for="showRisk-content" class="control-label">风险内容:</label>
-                        <input type="text" class="form-control" readonly="readonly" id="showRisk-content">
+                        <input type="text" class="form-control"  id="showRisk-content">
                     </div>
                     <div class="form-group">
                         <label for="showRisk-possibility" class="control-label">可能性（高中低）:</label>
-                        <input type="text" class="form-control" readonly="readonly" id="showRisk-possibility">
+                        <input type="text" class="form-control"  id="showRisk-possibility">
                     </div>
                     <div class="form-group">
                         <label for="showRisk-level" class="control-label">影响程度（高中低）:</label>
-                        <input type="text" class="form-control" readonly="readonly" id="showRisk-level">
+                        <input type="text" class="form-control"  id="showRisk-level">
                     </div>
                     <div class="form-group">
                         <label for="showRisk-gate" class="control-label">触发器/阈值:</label>
-                        <input type="text" class="form-control" readonly="readonly" id="showRisk-gate">
+                        <input type="text" class="form-control"  id="showRisk-gate">
                     </div>
                     <div class="form-group">
                         <label for="showRisk-creator" class="control-label">提交者:</label>
-                        <input type="text" class="form-control" readonly="readonly" id="showRisk-creator">
+                        <input type="text" class="form-control"  id="showRisk-creator">
                     </div>
                     <div class="form-group">
                         <label for="showRisk-follower" class="control-label">跟踪者:</label>
-                        <input type="text" class="form-control" readonly="readonly" id="showRisk-follower">
+                        <input type="text" class="form-control"  id="showRisk-follower">
                     </div>
 
 
@@ -198,9 +186,9 @@
         </div>
     </div>
 </div>
-<script type="text/javascript" src="/assets/js/jquery.min.js"></script>
-<script type="text/javascript" src="/assets/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="/assets/js/course.js"></script>
+<script type="text/javascript" src="./assets/js/jquery.min.js"></script>
+<script type="text/javascript" src="./assets/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="./assets/js/course.js"></script>
 <script>
     //loadChooseModal();
     deleteRisk();

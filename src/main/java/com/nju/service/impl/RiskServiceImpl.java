@@ -32,4 +32,16 @@ public class RiskServiceImpl implements RiskService{
     public void deleteRisk(int risk_id){
         riskDao.deleteRisk(risk_id);
     }
+
+	@Override
+	public int getMaxId() {
+		// TODO Auto-generated method stub
+		return riskDao.getMaxId();
+	}
+
+	@Override
+	public void followRisk(Risk risk) {
+		// TODO Auto-generated method stub
+		riskDao.update(risk) ;
+	}
 }

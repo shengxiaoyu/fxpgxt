@@ -234,7 +234,7 @@ function deleteRisk(){
                 risk_id:riskId
             },
             success:function() {
-                alert("删除成功");
+//                alert("删除成功");
                 window.location.reload();
             },
             error:function () {
@@ -270,7 +270,7 @@ function followRisk() {
                 },
                 success:function (data) {
                     if(data){
-                        alert("追踪成功");
+//                        alert("追踪成功");
                         window.location.reload();
                     }else {
                         alert("追踪失败");

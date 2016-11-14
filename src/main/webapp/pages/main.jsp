@@ -31,12 +31,15 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">
+                <!-- 
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><img
                             src="./assets/img/user.jpg" alt="用户" class="user-icon"> <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a href="#">个人中心</a></li>
                         <li><a href="logout.do">退出</a></li>
                     </ul>
+                     -->
+                     <a href="logout.do">Logout</a>
                 </li>
             </ul>
         </div>

@@ -1,7 +1,8 @@
 package com.nju.service.impl;
 
-import com.nju.data.RiskDao;
-import com.nju.model.Risk;
+
+import com.nju.data.dao.RiskDODAO;
+import com.nju.data.dataobject.RiskDO;
 import com.nju.service.RiskService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,37 +12,43 @@ import java.util.List;
 @Service
 public class RiskServiceImpl implements RiskService{
     @Autowired
-    private RiskDao riskDao;
+    private RiskDODAO riskDao;
 
     @Override
-    public List<Risk> getAllRisks(){
-        return riskDao.getAllRisks();
+    public List getAllRisks(){
+        return riskDao.findAll() ;
     }
 
     @Override
-    public void addRisk(Risk risk){
-        riskDao.addRisk(risk);
+    public void addRisk(RiskDO risk){
+        riskDao.save(risk) ;
     }
 
     @Override
-    public Risk getRisk(int  risk_id){
-        return riskDao.getRisk(risk_id);
+    public RiskDO getRisk(int  risk_id){
+        return riskDao.findById(risk_id) ;
     }
 
     @Override
     public void deleteRisk(int risk_id){
-        riskDao.deleteRisk(risk_id);
+        RiskDO risk = riskDao.findById(risk_id) ;
+        if(risk!=null){
+        	riskDao.delete(risk) ;
+        }
     }
 
 	@Override
 	public int getMaxId() {
 		// TODO Auto-generated method stub
-		return riskDao.getMaxId();
+	
+		List risks = riskDao.findAll() ;
+		if(risks!=null && !risks.isEmpty()){
+			return risks.size() ;
+		}
+		return 0 ;
 	}
 
-	@Override
-	public void followRisk(Risk risk) {
-		// TODO Auto-generated method stub
-		riskDao.update(risk) ;
-	}
+	
+
+
 }

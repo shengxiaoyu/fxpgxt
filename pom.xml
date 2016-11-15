@@ -9,9 +9,11 @@
   <url>http://maven.apache.org</url>
 
   <properties>
-    <spring.version>4.2.2.RELEASE</spring.version>
+    <spring.version>3.1.0.RELEASE</spring.version>
     <spring-data.version>1.2.0.RELEASE</spring-data.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <hibernate.core.version>3.2.6.ga</hibernate.core.version>
+    <hibernate.annotation.version>3.4.0.GA</hibernate.annotation.version>
   </properties>
 
 
@@ -54,15 +56,26 @@
     </dependency>
 
     <dependency>
-      <groupId>org.hibernate</groupId>
-      <artifactId>hibernate-core</artifactId>
-      <version>4.3.11.Final</version>
-    </dependency>
-    <dependency>
-      <groupId>org.hibernate</groupId>
-      <artifactId>hibernate-entitymanager</artifactId>
-      <version>4.3.11.Final</version>
-    </dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-annotations</artifactId>
+			<version>${hibernate.annotation.version}</version>
+	</dependency>
+	<dependency>
+		<groupId>org.hibernate</groupId>
+		<artifactId>hibernate</artifactId>
+		<version>${hibernate.core.version}</version>
+		<exclusions>
+			<exclusion>
+				<groupId>net.sf.ehcache</groupId>
+				<artifactId>ehcache</artifactId>
+			</exclusion>
+			<exclusion>
+				<groupId>commons-collections</groupId>
+				<artifactId>commons-collections</artifactId>
+			</exclusion>
+		</exclusions>
+	</dependency>
+   
     <dependency>
       <groupId>org.hibernate.javax.persistence</groupId>
       <artifactId>hibernate-jpa-2.1-api</artifactId>
@@ -96,11 +109,12 @@
       <version>1.2</version>
     </dependency>
 
-    <!--<dependency>-->
-      <!--<groupId>log4j</groupId>-->
-      <!--<artifactId>log4j</artifactId>-->
-      <!--<version>1.2.17</version>-->
-    <!--</dependency>-->
+    <dependency>
+      <groupId>log4j</groupId>
+      <artifactId>log4j</artifactId>
+      <version>1.2.17</version>
+    </dependency>
+    
     <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-log4j12</artifactId>

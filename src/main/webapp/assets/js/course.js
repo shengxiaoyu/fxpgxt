@@ -1,6 +1,6 @@
 
 /**
- * 初始化选课模态框
+ * 鍒濆鍖栭�璇炬ā鎬佹
  */
 // function loadChooseModal() {
 //     $('#FollowAddModal').on('show.bs.modal', function (event) {
@@ -16,7 +16,7 @@
 //
 //         alert(riskName);
 //         var modal = $(this)
-//         modal.find('.modal-title').html('跟踪 <span class="text-primary">' + " " + '</span> 风险')
+//         modal.find('.modal-title').html('璺熻釜 <span class="text-primary">' + " " + '</span> 椋庨櫓')
 //         modal.find('.modal-body input#showRisk-id').val(riskId)
 //         modal.find('.modal-body input#showRisk-name').val(riskName)
 //         modal.find('.modal-body input#showRisk-content').val(riskContent)
@@ -36,14 +36,14 @@
 //         //         },
 //         //         success:function (data) {
 //         //             if(data){
-//         //                 alert("选课成功");
+//         //                 alert("閫夎鎴愬姛");
 //         //                 window.location.reload();
 //         //             }else {
-//         //                 alert("选课失败------");
+//         //                 alert("閫夎澶辫触------");
 //         //             }
 //         //         },
 //         //         error:function () {
-//         //             alert("选课失败-------------");
+//         //             alert("閫夎澶辫触-------------");
 //         //         }
 //         //     })
 //         // }
@@ -51,7 +51,7 @@
 // }
 
 /**
- * 初始化退课模态框
+ * 鍒濆鍖栭�璇炬ā鎬佹
  */
 function loadDropModal() {
     $('#FollowAddModal').on('show.bs.modal', function (event) {
@@ -60,7 +60,7 @@ function loadDropModal() {
         var riskCreator
 
         var modal = $(this)
-        modal.find('.modal-title').html('确定退选 <span class="text-primary">' + courseName + '</span> 课程？')
+        modal.find('.modal-title').html('纭畾閫�� <span class="text-primary">' + courseName + '</span> 璇剧▼锛�)
 
         $('#follow-btn')[0].onclick = function () {
             $.ajax({
@@ -70,11 +70,11 @@ function loadDropModal() {
                     risk_id:riskId,
                 },
                 success:function (data) {
-                        alert("成功追踪");
+                        alert("鎴愬姛杩借釜");
                         window.location.reload();
                 },
                 error:function () {
-                    alert("追踪失败");
+                    alert("杩借釜澶辫触");
                 }
             })
         }
@@ -82,7 +82,7 @@ function loadDropModal() {
 }
 
 /**
- * 初始化添加风险态框
+ * 鍒濆鍖栨坊鍔犻闄╂�妗�
  */
 function loadAddModal() {
     $('#addRiskModal').on('show.bs.modal', function (event) {
@@ -90,7 +90,7 @@ function loadAddModal() {
 
 
         var modal = $(this)
-        modal.find('.modal-title').html('添加风险')
+        modal.find('.modal-title').html('娣诲姞椋庨櫓')
 
         $('#comfirm-add-btn')[0].onclick = function () {
             var riskId = 0
@@ -116,7 +116,7 @@ function loadAddModal() {
                     window.location.reload();
                 },
                 error:function () {
-                    alert("退课失败");
+                    alert("閫�澶辫触");
                 }
             })
         }
@@ -128,7 +128,7 @@ function loadAddModal() {
 //     $('#deleteRiskModal').on('show.bs.modal', function (event) {
 //         var button = $(event.relatedTarget) // Button that triggered the modal
 //         var modal = $(this)
-//         modal.find('.modal-title').html('删除风险')
+//         modal.find('.modal-title').html('鍒犻櫎椋庨櫓')
 //
 //         $('#comfirm-delete-btn')[0].onclick = function () {
 //             var riskId = 0
@@ -154,7 +154,7 @@ function loadAddModal() {
 //                     window.location.reload();
 //                 },
 //                 error:function () {
-//                     alert("退课失败");
+//                     alert("閫�澶辫触");
 //                 }
 //             })
 //         }
@@ -189,15 +189,15 @@ function loadCourses() {
                     '<td>' + riskCreator + '</td>' +
                     '<td>' + riskCreatedTime + '</td>' ;
 
-                content += '<td><a onclick="loadChooseRiskModal(this.id)" href="#" data-toggle="modal" data-target="#FollowAddModal" id=' + riskId + ':' + riskName + ':' + riskCreator + ':' + riskCreatedTime + ':' + riskContent + ':' + riskFollower + ':' + riskLevel + ':' + riskPossibility + ':' + riskGate +'>跟踪</a></td>';
-                content += '<td><a onclick="loadDeleteRiskModal(this.id)" href="#" data-toggle="modal" data-target="#deleteRiskModal" id=' + riskId +'>删除</a></td>';
+                content += '<td><a onclick="loadChooseRiskModal(this.id)" href="#" data-toggle="modal" data-target="#FollowAddModal" id=' + riskId + ':' + riskName + ':' + riskCreator + ':' + riskCreatedTime + ':' + riskContent + ':' + riskFollower + ':' + riskLevel + ':' + riskPossibility + ':' + riskGate +'>璺熻釜</a></td>';
+                content += '<td><a onclick="loadDeleteRiskModal(this.id)" href="#" data-toggle="modal" data-target="#deleteRiskModal" id=' + riskId +'>鍒犻櫎</a></td>';
 
 
                 content += '</tr>';
                 courseList.append(content);
 
             }
-            courseList.append('<tr> <td colspan="6"><a class="btn btn-default" href="#" data-toggle="modal" data-target="#addRiskModal">添加风险</a></td></tr>') ;
+            courseList.append('<tr> <td colspan="6"><a class="btn btn-default" href="#" data-toggle="modal" data-target="#addRiskModal">娣诲姞椋庨櫓</a></td></tr>') ;
         }
 
     });
@@ -208,7 +208,7 @@ function loadCourses() {
 function loadChooseRiskModal(str){
     var data = str.split(":")
     var modal = $('#FollowAddModal')
-    modal.find('.modal-title').html('跟踪 <span class="text-primary">' + data[0] + '</span> 风险')
+    modal.find('.modal-title').html('璺熻釜 <span class="text-primary">' + data[0] + '</span> 椋庨櫓')
     modal.find('.modal-body input#showRisk-id').val(data[0])
     modal.find('.modal-body input#showRisk-name').val(data[1])
     modal.find('.modal-body input#showRisk-content').val(data[4])
@@ -234,11 +234,11 @@ function deleteRisk(){
                 risk_id:riskId
             },
             success:function() {
-//                alert("删除成功");
+//                alert("鍒犻櫎鎴愬姛");
                 window.location.reload();
             },
             error:function () {
-                alert("删除失败");
+                alert("鍒犻櫎澶辫触");
             }
         })
     }
@@ -270,10 +270,10 @@ function followRisk() {
                 },
                 success:function (data) {
                     if(data){
-//                        alert("追踪成功");
+//                        alert("杩借釜鎴愬姛");
                         window.location.reload();
                     }else {
-                        alert("追踪失败");
+                        alert("杩借釜澶辫触");
                     }
                 },
                 error:function () {
@@ -314,7 +314,7 @@ function getMyCourses() {
                     '<td>' + coursePlace + '</td>' +
                     '<td>' + courseCredits + '</td>' +
                     '<td>' + courseDepartment + '</td>';
-                content += '<td><a href="#" data-toggle="modal" data-target="#dropCourseModal" data-course-id="' + courseId + '" data-course-name="' + courseName + '" data-course-place="' + coursePlace + '" data-course-teacher="' + courseTeacher + '" data-course-credits="' + courseCredits + '" data-course-department="' + courseDepartment + '">退课</a></td>';
+                content += '<td><a href="#" data-toggle="modal" data-target="#dropCourseModal" data-course-id="' + courseId + '" data-course-name="' + courseName + '" data-course-place="' + coursePlace + '" data-course-teacher="' + courseTeacher + '" data-course-credits="' + courseCredits + '" data-course-department="' + courseDepartment + '">閫�</a></td>';
                 content += '</tr>';
                 courseList.append(content);
             }

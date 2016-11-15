@@ -2,16 +2,19 @@ package com.nju.service;
 
 
 
-import com.nju.model.Risk;
+
 
 import java.util.List;
 
+import com.nju.data.dataobject.RiskDO;
+import com.nju.data.dataobject.RiskFollowerDO;
+
 
 public interface RiskService {
-    List<Risk> getAllRisks();
-    void addRisk(Risk risk);
-    Risk getRisk(int risk_id);
+    List<RiskDO> getAllRisks();
+    RiskDO getRisk(int risk_id);
     void deleteRisk(int risk_id);
     int getMaxId() ;
-	void followRisk(Risk risk);
+	void addRisk(RiskDO risk);
+	
 }

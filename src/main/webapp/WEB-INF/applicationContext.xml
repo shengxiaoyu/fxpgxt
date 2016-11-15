@@ -10,9 +10,8 @@
          http://www.springframework.org/schema/tx
          http://www.springframework.org/schema/tx/spring-tx.xsd">
 
-    <context:annotation-config />
     <context:component-scan base-package="com.nju.*" />
-<!--  
+ 
     <bean id="propertyConfigurer"
           class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
         <property name="location" value="classpath:jdbc.properties" />
@@ -32,9 +31,8 @@
     </bean>
 
     <bean id="sessionFactory"
-          class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+          class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
         <property name="dataSource" ref="dataSource" />
-        <property name="packagesToScan" value="com.nju.model" />
         <property name="hibernateProperties">
             <props>
                 <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
@@ -44,26 +42,44 @@
                 <prop key="hibernate.connection.driver_class">com.mysql.jdbc.Driver</prop>
             </props>
         </property>
+        <property name="annotatedClasses">
+        	<list>
+        		<value>com.nju.data.dataobject.UserDO</value>
+        		<value>com.nju.data.dataobject.RiskDO</value>
+        		<value>com.nju.data.dataobject.PlanDO</value>
+        		<value>com.nju.data.dataobject.PlanRiskDO</value>
+        		<value>com.nju.data.dataobject.RiskFollowerDO</value>
+        	</list>
+        </property>
     </bean>
-
-    <bean id="transactionManager"
-          class="org.springframework.orm.hibernate4.HibernateTransactionManager">
-        <property name="sessionFactory" ref="sessionFactory" />
-    </bean> 
--->
-<bean id="sessionFactory"
-          class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
-           <property name="hibernateProperties">
-            <props>
-                <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
-                </props>
-                </property>
-                </bean>
-    <tx:annotation-driven />
-	<!--  <bean id="studentDao" class="com.nju.dao.StudentDao">
-	</bean>
-	<bean id="riskDao" class="com.nju.dao.RiskDao">
-	</bean>
-	-->
-	
-</beans>
+	<tx:annotation-driven />
+  
+    
+  	<bean id="RiskDODAO" class="com.nju.data.dao.RiskDODAO">
+    	<property name="sessionFactory">
+    		<ref bean="sessionFactory" />
+    	</property>
+    </bean>
+    <bean id="PlanDODAO" class="com.nju.data.dao.PlanDODAO">
+    	<property name="sessionFactory">
+    		<ref bean="sessionFactory" />
+    	</property>
+    </bean>
+    <bean id="UserDODAO" class="com.nju.data.dao.UserDODAO">
+    	<property name="sessionFactory">
+    		<ref bean="sessionFactory" />
+    	</property>
+    </bean>
+    
+    <bean id="RiskFollowerDODAO"
+    	class="com.nju.data.dao.RiskFollowerDODAO">
+    	<property name="sessionFactory">
+    		<ref bean="sessionFactory" />
+    	</property>
+    </bean>
+    <bean id="PlanRiskDODAO"
+    	class="com.nju.data.dao.PlanRiskDODAO">
+    	<property name="sessionFactory">
+    		<ref bean="sessionFactory" />
+    	</property>
+    </bean></beans>

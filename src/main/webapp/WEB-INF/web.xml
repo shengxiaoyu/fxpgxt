@@ -6,20 +6,44 @@
 
   <context-param>
 		<param-name>webAppRootKey</param-name>
-		<param-value>web.tjsftj.root</param-value>
+		<param-value>web.fxpgxt.root</param-value>
 	</context-param>
 
-	<!-- 配置文件地址 -->
+		<!-- 配置文件地址 -->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>/WEB-INF/applicationContext*.xml</param-value>
 	</context-param>
-
 	<!-- Spring 启动监听 -->
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
+	
+	<!-- 编码过滤器 -->
+	<filter>
+		<filter-name>encodingFilter</filter-name>
+		<filter-class>com.nju.controller.filter.SetEncodeFilter
+		</filter-class>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+		<init-param>
+			<param-name>forceEncoding</param-name>
+			<param-value>true</param-value>
+		</init-param>
+	</filter>
+	
+	<filter-mapping>
+		<filter-name>encodingFilter</filter-name>
+		<url-pattern>*.do</url-pattern>
+	</filter-mapping>
 
+	<filter-mapping>
+		<filter-name>encodingFilter</filter-name>
+		<url-pattern>*.aj</url-pattern>
+	</filter-mapping>
+	
 	<!-- SpringMVC 控制器 -->
 	<servlet>
 		<servlet-name>dispatcher</servlet-name>
@@ -42,35 +66,29 @@
 		<servlet-name>dispatcher</servlet-name>
 		<url-pattern>*.aj</url-pattern>
 	</servlet-mapping>
-
-	<!-- 编码过滤器 -->
+	
 	<filter>
-		<filter-name>encodingFilter</filter-name>
-		<filter-class>com.nju.controller.filter.SetEncodeFilter
+		<filter-name>hibernateFilter</filter-name>
+		<filter-class>
+		org.springframework.orm.hibernate3.support.OpenSessionInViewFilter
 		</filter-class>
 		<init-param>
-			<param-name>encoding</param-name>
-			<param-value>UTF-8</param-value>
-		</init-param>
-		<init-param>
-			<param-name>forceEncoding</param-name>
-			<param-value>true</param-value>
+		<!-- singleSession默认为true,若设为false则等于没用OpenSessionInView -->
+		<param-name>singleSession</param-name>
+		<param-value>true</param-value>
 		</init-param>
 	</filter>
-
 	<filter-mapping>
-		<filter-name>encodingFilter</filter-name>
-		<url-pattern>*.do</url-pattern>
-	</filter-mapping>
-
+	    <filter-name>hibernateFilter</filter-name>
+	    <url-pattern>*.do</url-pattern>
+  	</filter-mapping>
 	<filter-mapping>
-		<filter-name>encodingFilter</filter-name>
-		<url-pattern>*.aj</url-pattern>
-	</filter-mapping>
-
+	    <filter-name>hibernateFilter</filter-name>
+	    <url-pattern>*.aj</url-pattern>
+  	</filter-mapping>
 	
-  <!-- 默认首页定义 -->
-  <welcome-file-list>
-    <welcome-file>/pages/login.jsp</welcome-file>
-  </welcome-file-list>
+	  <!-- 默认首页定义 -->
+	  <welcome-file-list>
+	    <welcome-file>/pages/login.jsp</welcome-file>
+	  </welcome-file-list>
 </web-app>

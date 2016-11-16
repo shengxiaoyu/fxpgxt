@@ -17,8 +17,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Enumeration;
 import java.util.List;
@@ -98,7 +96,7 @@ public class AuthController {
 
     @RequestMapping(value = "addRisk.aj", method = RequestMethod.POST)
     @ResponseBody
-    public boolean addRisk(@RequestParam String riskId,@RequestParam String riskName,@RequestParam String riskContent,@RequestParam String riskPossibility,@RequestParam String riskLevel,@RequestParam String riskGate, HttpSession session){
+    public boolean addRisk(@RequestParam String riskName,@RequestParam String riskContent,@RequestParam String riskPossibility,@RequestParam String riskLevel,@RequestParam String riskGate, HttpSession session){
 
         RiskDO risk = new RiskDO(riskService.getMaxId(), riskName, riskContent, (String)session.getAttribute("username")) ;
         riskService.addRisk(risk);

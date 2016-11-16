@@ -59,7 +59,7 @@
                         <th>风险编号</th>
                         <th>风险名称</th>
                         <th>创建者</th>
-                        <th>创建时间</th>
+                        <th>内容</th>
                         <th>跟踪</th>
                         <th>删除</th>
                     </tr>
@@ -155,7 +155,7 @@
                     </div>
                     <div class="form-group">
                         <label for="showRisk-content" class="control-label">风险内容:</label>
-                        <input type="text" class="form-control"  id="showRisk-content">
+                        <input type="text" class="form-control" readonly="readonly" id="showRisk-content">
                     </div>
                     <div class="form-group">
                         <label for="showRisk-possibility" class="control-label">可能性（高中低）:</label>
@@ -171,7 +171,7 @@
                     </div>
                     <div class="form-group">
                         <label for="showRisk-creator" class="control-label">提交者:</label>
-                        <input type="text" class="form-control"  id="showRisk-creator">
+                        <input type="text" class="form-control" readonly="readonly" id="showRisk-creator">
                     </div>
                     <div class="form-group">
                         <label for="showRisk-follower" class="control-label">跟踪者:</label>

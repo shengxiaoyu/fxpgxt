@@ -70,7 +70,7 @@
 	<filter>
 		<filter-name>hibernateFilter</filter-name>
 		<filter-class>
-		org.springframework.orm.hibernate3.support.OpenSessionInViewFilter
+			com.nju.controller.filter.OpenSessionInViewFilter
 		</filter-class>
 		<init-param>
 		<!-- singleSession默认为true,若设为false则等于没用OpenSessionInView -->

@@ -163,7 +163,7 @@ function followRisk() {
         var riskFollower= $("#showRisk-follower").val()
         var riskContent= $("#showRisk-content").val()
             $.ajax({
-                url:"followRisk.aj",
+                url:"assignRisk.aj",
                 type:"post",
                 data:{
                     id:riskId ,

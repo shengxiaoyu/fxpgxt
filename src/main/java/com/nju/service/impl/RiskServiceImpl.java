@@ -2,18 +2,26 @@ package com.nju.service.impl;
 
 
 import com.nju.data.dao.RiskDODAO;
+import com.nju.data.dao.RiskFollowerDODAO;
 import com.nju.data.dataobject.RiskDO;
+import com.nju.data.dataobject.RiskFollowerDO;
 import com.nju.service.RiskService;
+import com.nju.util.DateUtil;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class RiskServiceImpl implements RiskService{
     @Autowired
     private RiskDODAO riskDao;
-
+    @Autowired
+    private RiskFollowerDODAO followerDao;
     @Override
     public List getAllRisks(){
         return riskDao.findAll() ;
@@ -46,6 +54,36 @@ public class RiskServiceImpl implements RiskService{
 			return risks.size() ;
 		}
 		return 0 ;
+	}
+
+	@Override
+	public Map<Integer, Integer> getRecognizedTimes(String begin, String end) {
+		// TODO Auto-generated method stub
+		Map<Integer,Integer> map = new HashMap<Integer, Integer>() ;
+		List<RiskFollowerDO> list = followerDao.getRecognizedRisks(begin,end) ;
+		for(RiskFollowerDO riskFollowed:list){
+			if(map.get(riskFollowed.getRId())!=null){
+				map.put(riskFollowed.getRId(), map.get(riskFollowed.getRId())+1) ;
+			}else{
+				map.put(riskFollowed.getRId(), 1) ;
+			}
+		}
+		return map ;
+	}
+
+	@Override
+	public Map<Integer, Integer> getComeTrueTimes(String begin, String end) {
+		// TODO Auto-generated method stub
+		Map<Integer,Integer> map = new HashMap<Integer, Integer>() ;
+		List<RiskFollowerDO> list = followerDao.getRecognizedRisks(begin,end) ;
+		for(RiskFollowerDO riskFollowed:list){
+			if(map.get(riskFollowed.getRId())!=null){
+				map.put(riskFollowed.getRId(), map.get(riskFollowed.getRId())+1) ;
+			}else{
+				map.put(riskFollowed.getRId(), 1) ;
+			}
+		}
+		return map;
 	}
 
 	

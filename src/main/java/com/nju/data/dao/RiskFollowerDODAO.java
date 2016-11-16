@@ -1,4 +1,5 @@
 package com.nju.data.dao;
+// default package
 
 import java.util.Date;
 import java.util.List;
@@ -15,7 +16,7 @@ import com.nju.data.dataobject.RiskFollowerDO;
  			* Transaction control of the save(), update() and delete() operations 
 		can directly support Spring container-managed transactions or they can be augmented	to handle user-managed Spring transactions. 
 		Each of these methods provides additional information for how to configure it for the desired type of transaction control. 	
-	 * @see com.nju.data.dataobject.RiskFollowerDO
+	 * @see .RiskFollowerDO
   * @author MyEclipse Persistence Tools 
  */
 
@@ -28,13 +29,27 @@ public class RiskFollowerDODAO extends HibernateDaoSupport  {
 	public static final String INFLUENCE = "influence";
 	public static final String GATE = "gate";
 	public static final String RISK_FOLLOWERCOL = "riskFollowercol";
+	public static final String DESCRIPTION = "description";
 
 
 
 	protected void initDao() {
 		//do nothing
 	}
-    
+    public List<RiskFollowerDO> getRecognizedRisks(String begin ,String  end){
+    	String hql = "from RiskFollowerDO where beginTime>#BEGIN# and beginTime<#END#" ;
+    	hql.replaceAll("#BEGIN#", begin) ;
+    	hql.replaceAll("#END#", end) ;
+    	List<RiskFollowerDO> result = getHibernateTemplate().find(hql) ;
+    	return result;
+    }
+    public List<RiskFollowerDO> getComeTrueRisks(String begin,String end){
+    	String hql = "from RiskFollowerDO where endTime<>null and (endTime > #BEGIN# and endTime<#END#" ;
+    	hql.replaceAll("#END#",end) ;
+    	hql.replaceAll("#BEGIN#", begin) ;
+    	List<RiskFollowerDO> result = getHibernateTemplate().find(hql) ;
+    	return result;
+    }
     public void save(RiskFollowerDO transientInstance) {
         log.debug("saving RiskFollowerDO instance");
         try {
@@ -61,7 +76,7 @@ public class RiskFollowerDODAO extends HibernateDaoSupport  {
         log.debug("getting RiskFollowerDO instance with id: " + id);
         try {
             RiskFollowerDO instance = (RiskFollowerDO) getHibernateTemplate()
-                    .get("com.nju.data.dataobject.RiskFollowerDO", id);
+                    .get("RiskFollowerDO", id);
             return instance;
         } catch (RuntimeException re) {
             log.error("get failed", re);
@@ -128,6 +143,12 @@ public class RiskFollowerDODAO extends HibernateDaoSupport  {
 	public List<RiskFollowerDO> findByRiskFollowercol(Object riskFollowercol
 	) {
 		return findByProperty(RISK_FOLLOWERCOL, riskFollowercol
+		);
+	}
+	
+	public List<RiskFollowerDO> findByDescription(Object description
+	) {
+		return findByProperty(DESCRIPTION, description
 		);
 	}
 	

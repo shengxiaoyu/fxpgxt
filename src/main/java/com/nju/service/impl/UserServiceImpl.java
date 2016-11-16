@@ -40,5 +40,14 @@ public class UserServiceImpl implements UserService {
 		}
 		return null ;
 	}
+
+	@Override
+	public boolean register(UserDO user) {
+		// TODO Auto-generated method stub
+		int id = userDao.getMaxId() ;
+		user.setId(id) ;
+		userDao.save(user) ;
+		return true ;
+	}
     
 }

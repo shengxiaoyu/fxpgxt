@@ -148,7 +148,13 @@ public class UserDODAO extends HibernateDaoSupport  {
             throw re;
         }
     }
-
+    public int getMaxId(){
+    	List users = this.findAll() ;
+    	if(users!=null && !users.isEmpty()){
+    		return users.size() ;
+    	}
+    	return 0 ;
+    }
 	public static UserDODAO getFromApplicationContext(ApplicationContext ctx) {
     	return (UserDODAO) ctx.getBean("UserDODAO");
 	}

@@ -1,12 +1,15 @@
 package com.nju.data.dataobject;
+// default package
 
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import org.hibernate.annotations.GenericGenerator;
 
 
 /**
@@ -28,9 +31,9 @@ public class RiskFollowerDO  implements java.io.Serializable {
      private String possibility;
      private String influence;
      private String gate;
-     private String riskFollowercol;
      private Date beginTime;
      private Date endTime;
+     private String description;
 
 
     // Constructors
@@ -39,27 +42,22 @@ public class RiskFollowerDO  implements java.io.Serializable {
     public RiskFollowerDO() {
     }
 
-	/** minimal constructor */
-    public RiskFollowerDO(Integer id) {
-        this.id = id;
-    }
     
     /** full constructor */
-    public RiskFollowerDO(Integer id, Integer RId, Integer UId, String possibility, String influence, String gate, String riskFollowercol, Date beginTime, Date endTime) {
-        this.id = id;
+    public RiskFollowerDO(Integer RId, Integer UId, String possibility, String influence, String gate, Date beginTime, Date endTime, String description) {
         this.RId = RId;
         this.UId = UId;
         this.possibility = possibility;
         this.influence = influence;
         this.gate = gate;
-        this.riskFollowercol = riskFollowercol;
         this.beginTime = beginTime;
         this.endTime = endTime;
+        this.description = description;
     }
 
    
     // Property accessors
-    @Id 
+    @GenericGenerator(name="generator", strategy="com.nju.data.dataobject")@Id @GeneratedValue(generator="generator")
     
     @Column(name="id", unique=true, nullable=false)
 
@@ -121,15 +119,7 @@ public class RiskFollowerDO  implements java.io.Serializable {
         this.gate = gate;
     }
     
-    @Column(name="risk-followercol", length=45)
-
-    public String getRiskFollowercol() {
-        return this.riskFollowercol;
-    }
-    
-    public void setRiskFollowercol(String riskFollowercol) {
-        this.riskFollowercol = riskFollowercol;
-    }
+  
     @Temporal(TemporalType.DATE)
     @Column(name="begin_time", length=10)
 
@@ -149,6 +139,16 @@ public class RiskFollowerDO  implements java.io.Serializable {
     
     public void setEndTime(Date endTime) {
         this.endTime = endTime;
+    }
+    
+    @Column(name="description", length=65535)
+
+    public String getDescription() {
+        return this.description;
+    }
+    
+    public void setDescription(String description) {
+        this.description = description;
     }
    
 

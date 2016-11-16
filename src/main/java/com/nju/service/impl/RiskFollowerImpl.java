@@ -25,4 +25,10 @@ public class RiskFollowerImpl implements RiskFollowerService{
 		}
 		return 0 ;
 	}
+
+	@Override
+	public List<RiskFollowerDO> getFollowedRiskByUId(String uid) {
+		// TODO Auto-generated method stub
+		return riskFollowerDao.findByUId(uid);
+	}
 }

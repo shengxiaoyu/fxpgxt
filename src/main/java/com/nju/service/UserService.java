@@ -10,4 +10,5 @@ public interface UserService {
     List<UserDO> getAllUsers();
     public String getUserPass(String id);
     public UserDO getUserByName(String name) ;
+    public boolean register(UserDO user) ;
 }

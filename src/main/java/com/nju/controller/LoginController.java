@@ -28,7 +28,7 @@ public class LoginController {
 	        	System.out.println("login success");
 	        	UserDO user = userService.getUserByName(username) ;
 	        	session.setAttribute("user", user) ;
-	            return "main";
+	            return "redirect:main.do";
 	        }
 	        return "login";
 	    }
@@ -41,13 +41,19 @@ public class LoginController {
 	    }
 	    @RequestMapping(value="register.do",method = RequestMethod.POST)
 	    public String register(HttpServletRequest request,
-			HttpServletResponse response, ModelMap model){
-	    	String username = request.getParameter("username") ;
-	    	String password = request.getParameter("password") ;
-	    	UserDO user = new UserDO() ;
-	    	user.setName(username) ;
-	    	user.setPassword(password) ;
-	    	userService.register(user) ;
-	    	return "login" ;
+				HttpServletResponse response, ModelMap model){
+		    	String username = request.getParameter("username") ;
+		    	String password = request.getParameter("password") ;
+		    	String firmPasswordord = request.getParameter("confirmPassword") ;
+		    	if(password.equals(firmPasswordord)){
+		    	UserDO user = new UserDO() ;
+		    	user.setName(username) ;
+		    	user.setPassword(password) ;
+		    	userService.register(user) ;
+		    	
+		    	return "login" ;
+	    	}else{
+	    		return "register" ;
+	    	}
 	    }
 }

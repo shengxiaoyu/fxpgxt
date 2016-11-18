@@ -5,12 +5,18 @@
 
 <meta charset="gbk">
 <title>登陆界面</title>
+<%
+    String path = request.getContextPath();
+    String basePath = request.getScheme() + "://"
+            + request.getServerName() + ":" + request.getServerPort()
+            + path + "/";
+%>
+<base href="<%=basePath%>"></base>
 <!-- 新 Bootstrap 核心 CSS 文件 -->
-<link rel="stylesheet" type="text/css" href="./assets/css/bootstrap.min.css">
-<link rel="stylesheet" href="./assets/css/w3note.css">
+<link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
 <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
-    <script src="./assets/js/jquery-1.11.3.js"></script>
-    <script src="./assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/jquery-1.11.3.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
 	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
 </head>
 <body>
@@ -25,6 +31,7 @@
 			<br/>
 			<br/>
 			<form class="form-horizontal" action="login.do" method="post">
+		   <!-- 
 		    	<div class="from-group">
 				    <label class="control-label col-md-2 col-sm-offset-3">账户类型</label>
 					<div class="col-sm-3">
@@ -37,8 +44,10 @@
 				</div>
 				
 				<br/>
+				 
 				<br/>
 				<br/>
+				-->
 				<div class="form-group">
 				<label class="col-sm-2 control-label col-sm-offset-3" for="inputEmail">帐户</label>
 					<div class="col-sm-3">
@@ -56,17 +65,18 @@
 				
 				<div class="form-group">
 				<br/><br/>
+			   <!-- 
 			    <div class ="col-sm-offset-5 col-sm-6">
 					<div class="checkbox">
 						 <label ><input type="checkbox" /> Remember me</label> 
 					</div>
 					<br/>
 				</div>
-				
+				 -->
 				<div class="from-group">
 				    <div class ="col-sm-offset-5 col-sm-6">
 				        <button type="submit" class="btn btn-default">登陆</button> 
-				    	<a class="btn btn-default col-md-offset-1" href="#">注册</a>
+				    	<a class="btn btn-default col-md-offset-1" href="pages/register.jsp">注册</a>
 					</div>
 				</div>
 			    </div>

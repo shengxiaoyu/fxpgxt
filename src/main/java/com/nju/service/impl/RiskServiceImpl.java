@@ -75,7 +75,7 @@ public class RiskServiceImpl implements RiskService{
 	public Map<Integer, Integer> getComeTrueTimes(String begin, String end) {
 		// TODO Auto-generated method stub
 		Map<Integer,Integer> map = new HashMap<Integer, Integer>() ;
-		List<RiskFollowerDO> list = followerDao.getRecognizedRisks(begin,end) ;
+		List<RiskFollowerDO> list = followerDao.getComeTrueRisks(begin,end) ;
 		for(RiskFollowerDO riskFollowed:list){
 			if(map.get(riskFollowed.getRId())!=null){
 				map.put(riskFollowed.getRId(), map.get(riskFollowed.getRId())+1) ;

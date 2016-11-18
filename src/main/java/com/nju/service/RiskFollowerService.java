@@ -9,6 +9,6 @@ import com.nju.data.dataobject.RiskFollowerDO;
 public interface RiskFollowerService {
 	public int getMaxId() ;
 	public void followRisk(RiskFollowerDO followerRisk) ;
-	public List<RiskFollowerDO> getFollowedRiskByUId(String uid) ;
+	public List<RiskFollowerDO> getFollowedRiskByUId(int uid) ;
 	
 }

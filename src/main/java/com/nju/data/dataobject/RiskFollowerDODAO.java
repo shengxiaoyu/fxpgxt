@@ -1,13 +1,12 @@
-package com.nju.data.dao;
+package com.nju.data.dataobject;
 
+import java.util.Date;
 import java.util.List;
 import org.hibernate.LockMode;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
-
-import com.nju.data.dataobject.RiskFollowerDO;
 
 /**
  	* A data access object (DAO) providing persistence and search support for RiskFollowerDO entities.
@@ -26,7 +25,6 @@ public class RiskFollowerDODAO extends HibernateDaoSupport  {
 	public static final String POSSIBILITY = "possibility";
 	public static final String INFLUENCE = "influence";
 	public static final String GATE = "gate";
-	public static final String RISK_FOLLOWERCOL = "riskFollowercol";
 	public static final String DESCRIPTION = "description";
 
 
@@ -34,20 +32,7 @@ public class RiskFollowerDODAO extends HibernateDaoSupport  {
 	protected void initDao() {
 		//do nothing
 	}
-	public List<RiskFollowerDO> getRecognizedRisks(String begin ,String  end){
-    	String hql = "from RiskFollowerDO where beginTime>#BEGIN# and beginTime<#END#" ;
-    	hql.replaceAll("#BEGIN#", begin) ;
-    	hql.replaceAll("#END#", end) ;
-    	List<RiskFollowerDO> result = getHibernateTemplate().find(hql) ;
-    	return result;
-    }
-    public List<RiskFollowerDO> getComeTrueRisks(String begin,String end){
-    	String hql = "from RiskFollowerDO where endTime<>null and (endTime > #BEGIN# and endTime<#END#" ;
-    	hql.replaceAll("#END#",end) ;
-    	hql.replaceAll("#BEGIN#", begin) ;
-    	List<RiskFollowerDO> result = getHibernateTemplate().find(hql) ;
-    	return result;
-    }
+    
     public void save(RiskFollowerDO transientInstance) {
         log.debug("saving RiskFollowerDO instance");
         try {
@@ -135,12 +120,6 @@ public class RiskFollowerDODAO extends HibernateDaoSupport  {
 	public List<RiskFollowerDO> findByGate(Object gate
 	) {
 		return findByProperty(GATE, gate
-		);
-	}
-	
-	public List<RiskFollowerDO> findByRiskFollowercol(Object riskFollowercol
-	) {
-		return findByProperty(RISK_FOLLOWERCOL, riskFollowercol
 		);
 	}
 	

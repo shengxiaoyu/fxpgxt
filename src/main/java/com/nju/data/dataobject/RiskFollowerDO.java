@@ -1,15 +1,12 @@
 package com.nju.data.dataobject;
-// default package
 
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import org.hibernate.annotations.GenericGenerator;
 
 
 /**
@@ -42,9 +39,14 @@ public class RiskFollowerDO  implements java.io.Serializable {
     public RiskFollowerDO() {
     }
 
+	/** minimal constructor */
+    public RiskFollowerDO(Integer id) {
+        this.id = id;
+    }
     
     /** full constructor */
-    public RiskFollowerDO(Integer RId, Integer UId, String possibility, String influence, String gate, Date beginTime, Date endTime, String description) {
+    public RiskFollowerDO(Integer id, Integer RId, Integer UId, String possibility, String influence, String gate, Date beginTime, Date endTime, String description) {
+        this.id = id;
         this.RId = RId;
         this.UId = UId;
         this.possibility = possibility;
@@ -57,7 +59,7 @@ public class RiskFollowerDO  implements java.io.Serializable {
 
    
     // Property accessors
-    @GenericGenerator(name="generator", strategy="com.nju.data.dataobject")@Id @GeneratedValue(generator="generator")
+    @Id 
     
     @Column(name="id", unique=true, nullable=false)
 
@@ -118,8 +120,6 @@ public class RiskFollowerDO  implements java.io.Serializable {
     public void setGate(String gate) {
         this.gate = gate;
     }
-    
-  
     @Temporal(TemporalType.DATE)
     @Column(name="begin_time", length=10)
 

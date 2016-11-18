@@ -23,15 +23,15 @@ public class FollowRiskController {
 	@Autowired
 	RiskFollowerService followerService ;
 	
-	@RequestMapping(value="followedRisks.do",method = RequestMethod.POST)
+	@RequestMapping(value="followedRisks.do",method = RequestMethod.GET)
 	public String showFollowedRisks(HttpServletRequest request,HttpServletResponse response,ModelMap model){
 		UserDO user = (UserDO) request.getSession().getAttribute("user") ;
 		List<RiskFollowerDO> list = new ArrayList<RiskFollowerDO>() ;
 		if(user!=null){
-			followerService.getFollowedRiskByUId(String.valueOf(user.getId())) ;
+			followerService.getFollowedRiskByUId(user.getId()) ;
 			model.addAttribute("followedRisksList", list) ;
 		}
-		return "followedRisks" ;
+		return "follow" ;
 	}
 	@RequestMapping(value = "/followRisk.aj", method = RequestMethod.POST)
     public boolean followRisk(HttpServletRequest request,

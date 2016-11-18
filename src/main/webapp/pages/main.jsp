@@ -5,6 +5,7 @@
 <head>
     <title>风险评估系统</title>
     <link rel="stylesheet" href="./assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/w3note.css">
     <style>
         body { padding-top: 100px; }
         .user-icon {

@@ -13,7 +13,7 @@ public class DateUtil {
       return date;
   }
 	public static Date FormatDate(String dateStr){
-		String format="yyyy-MM-dd HH:mm:ss";
+		String format="yyyy-MM-dd";
 		Date date = null ;
 		try {
 			date = new SimpleDateFormat(format).parse(dateStr) ;

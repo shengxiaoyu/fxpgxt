@@ -34,6 +34,9 @@ public class RiskFollowerDODAO extends HibernateDaoSupport  {
 	protected void initDao() {
 		//do nothing
 	}
+	public void update(RiskFollowerDO riskFollower){
+		getHibernateTemplate().update(riskFollower) ;
+	}
 	public List<RiskFollowerDO> getRecognizedRisks(String begin ,String  end){
     	String hql = "from RiskFollowerDO where beginTime>#BEGIN# and beginTime<#END#" ;
     	hql.replaceAll("#BEGIN#", begin) ;

@@ -30,7 +30,7 @@ public class PlanController {
 	@Autowired
 	private RiskService riskService ;
 	
-	@RequestMapping(value="managerPlan.do",method=RequestMethod.POST)
+	@RequestMapping(value="managerPlan.do",method=RequestMethod.GET)
 	public String showPlans(HttpServletRequest request,HttpServletResponse response,
 			ModelMap model){
 		List<PlanDO> plans = planService.getAllPlans() ;

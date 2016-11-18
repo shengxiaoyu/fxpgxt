@@ -15,7 +15,7 @@ public class RiskFollowerImpl implements RiskFollowerService{
 	@Override
 	public void followRisk(RiskFollowerDO riskFollower) {
 		// TODO Auto-generated method stub
-		riskFollowerDao.save(riskFollower) ;
+		riskFollowerDao.update(riskFollower) ;
 	}
 
 	@Override
@@ -31,6 +31,6 @@ public class RiskFollowerImpl implements RiskFollowerService{
 	@Override
 	public List<RiskFollowerDO> getFollowedRiskByUId(int uid) {
 		// TODO Auto-generated method stub
-		return riskFollowerDao.findByUId(uid);
+		return riskFollowerDao.findByUId(new Integer(uid));
 	}
 }

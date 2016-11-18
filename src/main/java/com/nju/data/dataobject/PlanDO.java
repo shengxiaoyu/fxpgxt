@@ -64,12 +64,4 @@ public class PlanDO  implements java.io.Serializable {
         this.name = name;
     }
    
-
-
-
-
-
-
-
-
 }

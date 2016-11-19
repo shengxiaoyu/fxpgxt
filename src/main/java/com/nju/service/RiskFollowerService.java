@@ -10,5 +10,6 @@ public interface RiskFollowerService {
 	public int getMaxId() ;
 	public void followRisk(RiskFollowerDO followerRisk) ;
 	public List<RiskFollowerDO> getFollowedRiskByUId(int uid) ;
+	public void assignRisk(RiskFollowerDO riskFollower);
 	
 }

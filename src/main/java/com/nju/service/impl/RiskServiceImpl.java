@@ -49,11 +49,7 @@ public class RiskServiceImpl implements RiskService{
 	public int getMaxId() {
 		// TODO Auto-generated method stub
 	
-		List risks = riskDao.findAll() ;
-		if(risks!=null && !risks.isEmpty()){
-			return risks.size() ;
-		}
-		return 0 ;
+		return riskDao.getMaxId() ;
 	}
 
 	@Override
@@ -62,10 +58,11 @@ public class RiskServiceImpl implements RiskService{
 		Map<Integer,Integer> map = new HashMap<Integer, Integer>() ;
 		List<RiskFollowerDO> list = followerDao.getRecognizedRisks(begin,end) ;
 		for(RiskFollowerDO riskFollowed:list){
-			if(map.get(riskFollowed.getRId())!=null){
-				map.put(riskFollowed.getRId(), map.get(riskFollowed.getRId())+1) ;
+			int riskId = riskFollowed.getRId() ;
+			if(map.get(riskId)!=null){
+				map.put(riskId, map.get(riskId)+1) ;
 			}else{
-				map.put(riskFollowed.getRId(), 1) ;
+				map.put(riskId, 1) ;
 			}
 		}
 		return map ;
@@ -77,13 +74,14 @@ public class RiskServiceImpl implements RiskService{
 		Map<Integer,Integer> map = new HashMap<Integer, Integer>() ;
 		List<RiskFollowerDO> list = followerDao.getComeTrueRisks(begin,end) ;
 		for(RiskFollowerDO riskFollowed:list){
-			if(map.get(riskFollowed.getRId())!=null){
-				map.put(riskFollowed.getRId(), map.get(riskFollowed.getRId())+1) ;
+			int riskId = riskFollowed.getRId() ;
+			if(map.get(riskId)!=null){
+				map.put(riskId, map.get(riskId)+1) ;
 			}else{
-				map.put(riskFollowed.getRId(), 1) ;
+				map.put(riskId, 1) ;
 			}
 		}
-		return map;
+		return map ;
 	}
 
 	

@@ -2,6 +2,8 @@ package com.nju.data.dao;
 
 import java.util.List;
 import org.hibernate.LockMode;
+import org.hibernate.Query;
+import org.hibernate.Session;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
@@ -149,12 +151,23 @@ public class UserDODAO extends HibernateDaoSupport  {
         }
     }
     public int getMaxId(){
-    	List users = this.findAll() ;
-    	if(users!=null && !users.isEmpty()){
-    		return users.size() ;
-    	}
-    	return 0 ;
-    }
+		if (logger.isDebugEnabled()) {
+			logger.debug("开始：从数据库中获取最大xh");
+		}
+		String hql = "select max(id) from UserDO";
+		Session s = this.getSession();
+		Query query = s.createQuery(hql);
+		Integer maxBh = 0;
+		if (query.uniqueResult() != null)
+			maxBh = (Integer) query.uniqueResult();
+		// 释放数据库连接！！！
+		this.releaseSession(s);
+		if (logger.isDebugEnabled()) {
+			logger.debug("结束：从数据库中获取最大xh");
+		}
+		return maxBh+1;
+	
+	}
 	public static UserDODAO getFromApplicationContext(ApplicationContext ctx) {
     	return (UserDODAO) ctx.getBean("UserDODAO");
 	}

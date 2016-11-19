@@ -69,7 +69,7 @@ public class MainController {
         return riskService.getAllRisks();
     }
 
-    @RequestMapping(value = "addRisk.aj", method = RequestMethod.GET)
+    @RequestMapping(value = "addRisk.aj", method = RequestMethod.POST)
     public void addRisk(HttpServletRequest request,HttpServletResponse response,
 			ModelMap model){
     	String name = request.getParameter("riskName") ;
@@ -96,7 +96,7 @@ public class MainController {
         	String id = request.getParameter("riskId") ;
         	riskFollower.setRId(Integer.valueOf(id)) ;;
         	riskFollower.setBeginTime(DateUtil.getTime()) ;
-        	followerService.followRisk(riskFollower) ;
+        	followerService.assignRisk(riskFollower) ;
     	}
         return true;
     }

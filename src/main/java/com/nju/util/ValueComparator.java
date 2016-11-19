@@ -4,8 +4,8 @@ import java.util.Comparator;
 import java.util.Map;
 
 public class ValueComparator implements Comparator<Integer>{
-	Map<Integer,Integer> map ;
-	public ValueComparator(Map<Integer,Integer> map){
+	Map<String,Integer> map ;
+	public ValueComparator(Map<String,Integer> map){
 		this.map = map ;
 	}
 	@Override
@@ -17,5 +17,11 @@ public class ValueComparator implements Comparator<Integer>{
 			return -1 ;
 			}
 	}
-
+	public Map<String, Integer> getMap() {
+		return map;
+	}
+	public void setMap(Map<String, Integer> map) {
+		this.map = map;
+	}
+	
 }

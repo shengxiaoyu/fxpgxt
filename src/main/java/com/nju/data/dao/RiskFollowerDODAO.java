@@ -2,6 +2,8 @@ package com.nju.data.dao;
 
 import java.util.List;
 import org.hibernate.LockMode;
+import org.hibernate.Query;
+import org.hibernate.Session;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
@@ -34,20 +36,40 @@ public class RiskFollowerDODAO extends HibernateDaoSupport  {
 	protected void initDao() {
 		//do nothing
 	}
+	public int getMaxId(){
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("开始：从数据库中获取最大xh");
+		}
+		String hql = "select max(id) from RiskFollowerDO";
+		Session s = this.getSession();
+		Query query = s.createQuery(hql);
+		Integer maxBh = 0;
+		if (query.uniqueResult() != null)
+			maxBh = (Integer) query.uniqueResult();
+		// 释放数据库连接！！！
+		this.releaseSession(s);
+		if (logger.isDebugEnabled()) {
+			logger.debug("结束：从数据库中获取最大xh");
+		}
+		return maxBh+1;
+	
+	
+	}
 	public void update(RiskFollowerDO riskFollower){
 		getHibernateTemplate().update(riskFollower) ;
 	}
 	public List<RiskFollowerDO> getRecognizedRisks(String begin ,String  end){
-    	String hql = "from RiskFollowerDO where beginTime>#BEGIN# and beginTime<#END#" ;
-    	hql.replaceAll("#BEGIN#", begin) ;
-    	hql.replaceAll("#END#", end) ;
+    	String hql = "from RiskFollowerDO where beginTime >='#BEGIN#' and beginTime<='#END#'" ;
+    	hql = hql.replaceAll("#BEGIN#", begin) ;
+    	hql = hql.replaceAll("#END#", end) ;
     	List<RiskFollowerDO> result = getHibernateTemplate().find(hql) ;
     	return result;
     }
     public List<RiskFollowerDO> getComeTrueRisks(String begin,String end){
-    	String hql = "from RiskFollowerDO where endTime<>null and (endTime > #BEGIN# and endTime<#END#" ;
-    	hql.replaceAll("#END#",end) ;
-    	hql.replaceAll("#BEGIN#", begin) ;
+    	String hql = "from RiskFollowerDO where endTime <> null and (endTime >= '#BEGIN#' and endTime <= '#END#')" ;
+    	hql = hql.replaceAll("#END#",end) ;
+    	hql = hql.replaceAll("#BEGIN#", begin) ;
     	List<RiskFollowerDO> result = getHibernateTemplate().find(hql) ;
     	return result;
     }

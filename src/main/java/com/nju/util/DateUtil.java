@@ -25,7 +25,7 @@ public class DateUtil {
 		return date ;
 	}
 	public static String FormatDate(Date date){
-		 DateFormat format=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		 DateFormat format=new SimpleDateFormat("yyyy-MM-dd");
 		 return format.format(date) ;
 	}
 }

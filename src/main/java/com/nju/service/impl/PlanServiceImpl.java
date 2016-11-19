@@ -35,11 +35,8 @@ public class PlanServiceImpl implements PlanService{
 	public void addRiskIntoPlan(PlanDO plan, RiskDO risk) {
 		// TODO Auto-generated method stub
 		PlanRiskDO planRisk = new PlanRiskDO() ;
-		List<PlanRiskDO> list = planRiskDao.findAll() ;
-		if(list!=null&&!list.isEmpty()){
-			planRisk.setId(list.size()) ;
-		}else
-			planRisk.setId(0) ;
+		int id = planRiskDao.getMaxId() ;
+		planRisk.setId(id) ;
 		planRisk.setPId(plan.getId()) ;
 		planRisk.setRId(risk.getId()) ;
 		planRiskDao.save(planRisk) ;
@@ -56,11 +53,7 @@ public class PlanServiceImpl implements PlanService{
 	@Override
 	public int getMaxId() {
 		// TODO Auto-generated method stub
-		List<PlanDO> list = planDao.findAll() ;
-		if(list!=null &&!list.isEmpty()){
-			return list.size() ;
-		}
-		return 0 ;
+		return planDao.getMaxId() ;
 	}
 
 	@Override
@@ -78,6 +71,37 @@ public class PlanServiceImpl implements PlanService{
 			result.add(riskDao.findById(planRisk.getRId())) ;
 		}
 		return result ;
+	}
+
+	@Override
+	public PlanDO getPlanById(int pid) {
+		// TODO Auto-generated method stub
+		
+		return planDao.findById(pid) ;
+	}
+
+	@Override
+	public void deleteRiskFromPlan(PlanDO plan, RiskDO risk) {
+		// TODO Auto-generated method stub
+		PlanRiskDO pld = new PlanRiskDO() ;
+		pld.setPId(plan.getId()) ;
+		pld.setRId(risk.getId()) ;
+		List<PlanRiskDO> thePlds= planRiskDao.findByExample(pld) ;
+		if(thePlds!=null && !thePlds.isEmpty()){
+			planRiskDao.delete(thePlds.get(0)) ;
+		}
+	}
+
+	@Override
+	public void updateRiskInPlan(PlanDO plan, RiskDO risk) {
+		// TODO Auto-generated method stub
+		PlanRiskDO pld = new PlanRiskDO() ;
+		pld.setPId(plan.getId()) ;
+		pld.setRId(risk.getId()) ;
+		List<PlanRiskDO> thePlds= planRiskDao.findByExample(pld) ;
+		if(thePlds!=null && !thePlds.isEmpty()){
+			planRiskDao.delete(thePlds.get(0)) ;
+		}
 	}
 
 }

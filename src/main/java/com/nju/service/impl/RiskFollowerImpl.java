@@ -21,16 +21,19 @@ public class RiskFollowerImpl implements RiskFollowerService{
 	@Override
 	public int getMaxId() {
 		// TODO Auto-generated method stub
-		List riskFollowers = riskFollowerDao.findAll();
-		if(riskFollowers!=null && !riskFollowers.isEmpty()){
-			return riskFollowers.size() ;
-		}
-		return 0 ;
+		
+		return riskFollowerDao.getMaxId();
 	}
 
 	@Override
 	public List<RiskFollowerDO> getFollowedRiskByUId(int uid) {
 		// TODO Auto-generated method stub
 		return riskFollowerDao.findByUId(new Integer(uid));
+	}
+
+	@Override
+	public void assignRisk(RiskFollowerDO riskFollower) {
+		// TODO Auto-generated method stub
+		riskFollowerDao.save(riskFollower) ;
 	}
 }

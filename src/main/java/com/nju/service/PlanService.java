@@ -12,4 +12,7 @@ public interface PlanService {
 	public int getMaxId() ;
 	public List<PlanDO> getAllPlans() ;
 	public List<RiskDO> getPlanDetail(int pid) ;
+	public PlanDO getPlanById(int pid) ;
+	public void deleteRiskFromPlan(PlanDO plan,RiskDO risk) ;
+	public void updateRiskInPlan(PlanDO plan,RiskDO risk) ;
 }

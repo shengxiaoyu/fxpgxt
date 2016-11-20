@@ -6,11 +6,13 @@ import com.nju.data.dao.RiskFollowerDODAO;
 import com.nju.data.dataobject.RiskDO;
 import com.nju.data.dataobject.RiskFollowerDO;
 import com.nju.service.RiskService;
+import com.nju.service.model.ChartDataModel;
 import com.nju.util.DateUtil;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -82,6 +84,36 @@ public class RiskServiceImpl implements RiskService{
 			}
 		}
 		return map ;
+	}
+
+	@Override
+	public List<ChartDataModel> getChartData(String begin, String end) {
+		// TODO Auto-generated method stub
+		long ks = DateUtil.FormatDate(begin).getTime() ;
+		long js = DateUtil.FormatDate(end).getTime() ;
+		List<RiskFollowerDO> followers = followerDao.findAll() ;
+		List<RiskDO> risks = getAllRisks() ;
+		List<ChartDataModel> result = new ArrayList<ChartDataModel>();
+		for(RiskDO risk:risks){
+			int time1 = 0 ;
+			int time2 = 0 ;
+			int rid = risk.getId() ;
+			for(RiskFollowerDO follower:followers){
+				int frid = follower.getRId() ;
+				if(rid == frid){
+					Date theks = follower.getBeginTime() ;
+					if(theks.getTime()>=ks && theks.getTime()<=js )
+						time1++ ;
+					Date thejs = follower.getEndTime() ;
+					if(thejs!=null){
+						if(thejs.getTime()>=ks&&thejs.getTime()<=js)
+							time2++ ;
+					}
+				}
+			}
+			result.add(new ChartDataModel(risk.getName(), time1, time2)) ;
+		}
+		return result ;
 	}
 
 	

@@ -7,6 +7,7 @@ import com.nju.data.dataobject.UserDO;
 import com.nju.service.RiskFollowerService;
 import com.nju.service.RiskService;
 import com.nju.service.UserService;
+import com.nju.service.model.ChartDataModel;
 import com.nju.util.DateUtil;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,12 +15,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+
+import java.util.Date;
 import java.util.List;
 
 
@@ -39,10 +40,14 @@ public class MainController {
 //        List<RiskDO> riskList = riskService.getAllRisks();
 		String begin = request.getParameter("begin") ;
 		String end = request.getParameter("end") ;
-		if(begin.equals("undefined")||begin==""||begin==null){
+		if(begin==null){
+			begin = "2016-11-01" ;
+		}else if(begin==""||begin.equals("undefined")){
 			begin = "2016-11-01" ;
 		}
-		if(end.equals("undefined")||end==""||end==null){
+		if(end==null){
+			end = DateUtil.FormatDate(new Date()) ;
+		}else if(end==""||end.equals("undefined")){
 			end = DateUtil.FormatDate(new Date()) ;
 		}
     	List<UserDO> users = userService.getAllUsers() ;
@@ -127,5 +132,12 @@ public class MainController {
         int riskid=Integer.valueOf(risk_id);
         riskService.deleteRisk(riskid);
     }
-
+    @RequestMapping(value="getChartData.aj",method=RequestMethod.POST)
+    @ResponseBody
+    public List<ChartDataModel> getChartData(HttpServletRequest request,
+			HttpServletResponse response){
+    	String begin = request.getParameter("begin") ;
+    	String end = request.getParameter("end") ;
+    	return  riskService.getChartData(begin, end) ;
+    }
 }

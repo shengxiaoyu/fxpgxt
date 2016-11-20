@@ -1,75 +1,103 @@
-
+var dataX = null ;
+var dataY1 = null ;
+var dataY2 = null ;
 
 
 $(function(){
 	loadCourses() ;
-	loadRecognizedChart();
-	loadComeTrueChart() ;
+	loadChartData() ;
 });
-function loadRecognizedChart(){
-	var kssj = $(#kssj).val() ;
-	var jssj = $(#jssj).val() ;
+$('#sjxz-btn').on('click',function(){
+	loadChartData() ;
+})
+function loadChartData(){
+	var kssj = $('#kssj').val() ;
+	var jssj = $('#jssj').val() ;
 	$.ajax({
-		url:"getRecognizedRiskList.aj",
-		type:"post" ,
-		dataType:"json" ,
+		url:'getChartData.aj',
+		type:'post',
+		dataType:'json',
 		data:{
-			kssj:kssj,
-			jssj:jssj
+			begin:kssj,
+			end:jssj
 		},
 		success:function(data){
-			var chart1= Highcharts.chart('bar1',{
-				chart:{
-					type:'bar'
-				},
-				title:{
-					text:'识别统计图'
-				},
-				xAxis:{
-					categories:data.riskName
-				},
-				yAxis:{
-					title:{
-						text:'次数'
-					}
-				},
-				series:data.time
-			}) ;
+			console.log(data);
+			dataX = new Array() ;
+			dataY1 = new Array() ;
+			dataY2 = new Array() ;
+			for(var i=0;i<data.length;i++){
+				dataX[i] = (data[i]['riskName']) ;
+				dataY1[i]=(data[i]['time1']) ;
+				dataY2[i]=(data[i]['time2']) ;
+			}
+			
+			console.log(dataX);
+			console.log(dataY1);
+			console.log(dataY2);
+			loadChart() ;
 		}
 	})
 }
-function loadComeTrueChart(){
-	var kssj = $(#kssj).val() ;
-	var jssj = $(#jssj).val() ;
-	$.ajax({
-		url:"getComeTrueRiskList.aj",
-		type:"post" ,
-		dataType:"json" ,
-		data:{
-			kssj:kssj,
-			jssj:jssj
-		},
-		success:function(data){
-			var chart1= Highcharts.chart('bar2',{
-				chart:{
-					type:'bar'
-				},
-				title:{
-					text:'演变统计图'
-				},
-				xAxis:{
-					categories:data.riskName
-				},
-				yAxis:{
-					title:{
-						text:'次数'
-					}
-				},
-				series:data.time
-			}) ;
-		}
-	})
+function loadChart(){
+	var chart = {
+		      type: 'column'
+		   };
+ var title = {
+    text: '风险统计图'   
+ };
+ var subtitle = {
+    text: '风险评估系统'  
+ };
+ var xAxis = {
+    categories: dataX,
+    crosshair: true
+ };
+ var yAxis = {
+    min: 0,
+    title: {
+       text: '次数 '         
+    }      
+ };
+ var tooltip = {
+    headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+    pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+       '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
+    footerFormat: '</table>',
+    shared: true,
+    useHTML: true
+ };
+ var plotOptions = {
+    column: {
+       pointPadding: 0.2,
+       borderWidth: 0
+    }
+ };  
+ var credits = {
+    enabled: false
+ };
+ 
+ var series= [{
+      name: '识别',
+          data: dataY1
+      }, {
+          name: '演变',
+          data: dataY2
+      }];     
+    
+		   var json = {};   
+		   json.chart = chart; 
+		   json.title = title;   
+		   json.subtitle = subtitle; 
+		   json.tooltip = tooltip;
+		   json.xAxis = xAxis;
+		   json.yAxis = yAxis;  
+		   json.series = series;
+		   json.plotOptions = plotOptions;  
+		   json.credits = credits;
+		   $('#container').highcharts(json);
 }
+
 //初始化风险列表
 function loadCourses() {
     $.ajax({
@@ -77,7 +105,6 @@ function loadCourses() {
         type:"post",
         dataType:"json" ,
         success:function (data) {
-            console.log(data);
             var courseList = $("#risk-list");
             for (var i = 0; i < data.length; i++){
                 var riskId = data[i]['id'];

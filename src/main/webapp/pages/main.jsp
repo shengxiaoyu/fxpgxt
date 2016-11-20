@@ -46,22 +46,15 @@
 
 <div class="container-fluid">
 <div class="col-md-12">
-	<div class="sjxz">
-			<h4>时间选择：</h4>
+	<div class="sjxz" style="float:right">
+			时间选择：
 				<input id="kssj" type="date" value="${begin }">
 				<label>——</label>
 				<input id="jssj" type="date" value="${end }">
 				&nbsp&nbsp
 				<button id="sjxz-btn" class="btn btn-info">确定</button>
 			</div>
-		<div id="bar1" style="width:100%; hight=400px;">
-			
-		</div>
-		<br/>
-		<br/>
-		<div id="bar2" style="width:100%; hight=400px;">
-			
-		</div>
+		
 	</div>
 </div>
 
@@ -135,6 +128,13 @@
 <script type="text/javascript" src="./assets/js/jquery.min.js"></script>
 <script type="text/javascript" src="./assets/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="./assets/js/main.js"></script>
-
+<script type="text/javascript" src="./assets/js/highcharts.js"></script>
+<div id="container" style="width: 550px; height: 400px; margin: 0 auto"></div>
+<script language="JavaScript">
+$(document).ready(function() {  
+   
+  
+});
+</script>
 </body>
 </html>

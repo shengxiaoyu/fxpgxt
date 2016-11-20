@@ -47,7 +47,7 @@ public class RiskFollowerDODAO extends HibernateDaoSupport  {
 		Integer maxBh = 0;
 		if (query.uniqueResult() != null)
 			maxBh = (Integer) query.uniqueResult();
-		this.releaseSession(s);
+		s.close() ;
 		if (logger.isDebugEnabled()) {
 			logger.debug("get maxID");
 		}

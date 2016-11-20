@@ -30,7 +30,7 @@
 			<br/>
 			<br/>
 			<br/>
-			<form class="form-horizontal" action="login.do" method="post">
+			<form class="form-horizontal" action="Login.do" method="post">
 		   <!-- 
 		    	<div class="from-group">
 				    <label class="control-label col-md-2 col-sm-offset-3">账户类型</label>

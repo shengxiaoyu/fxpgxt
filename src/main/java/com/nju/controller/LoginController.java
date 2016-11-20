@@ -17,7 +17,7 @@ import com.nju.service.UserService;
 public class LoginController {
 	@Autowired
     private UserService userService;
-	 @RequestMapping(value = "login.do" , method = RequestMethod.POST)
+	 @RequestMapping(value = "Login.do" , method = RequestMethod.POST)
 	    public String postlogin(HttpServletRequest request,
 				HttpServletResponse response, HttpSession session){
 	    	String username = request.getParameter("username") ;

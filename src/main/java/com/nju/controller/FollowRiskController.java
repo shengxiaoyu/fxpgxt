@@ -1,6 +1,7 @@
 package com.nju.controller;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -55,7 +56,11 @@ public class FollowRiskController {
     	riskFollower.setInfluence(request.getParameter("level")) ;
     	riskFollower.setGate(request.getParameter("gate")) ;
     	riskFollower.setDescription(request.getParameter("description")) ;
-    	riskFollower.setEndTime(request.getParameter("end").equals(null)?null:DateUtil.getTime()) ;
+    	String end = request.getParameter("end") ;
+    	if(end.equals("")||end.equals("undefined")||end==null)
+    		riskFollower.setEndTime(null) ;
+    	else
+    		riskFollower.setEndTime(new Date()) ;
     	followerService.followRisk(riskFollower) ;
 //        return true;
     }

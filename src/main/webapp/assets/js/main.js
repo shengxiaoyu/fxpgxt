@@ -12,7 +12,7 @@ function loadCourses() {
             console.log(data);
             var courseList = $("#risk-list");
             for (var i = 0; i < data.length; i++){
-                var riskId = data[i]['id']+1;
+                var riskId = data[i]['id'];
                 var riskName = data[i]['name'];
                 var riskCreator = data[i]['creator'];
                 var riskContent = data[i]['content'];

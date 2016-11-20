@@ -98,7 +98,7 @@ public class PlanDODAO extends HibernateDaoSupport  {
 	}
 	public int getMaxId(){
 		if (logger.isDebugEnabled()) {
-			logger.debug("开始：从数据库中获取最大xh");
+			logger.debug("get maxID");
 		}
 		String hql = "select max(id) from PlanDO";
 		Session s = this.getSession();
@@ -109,7 +109,7 @@ public class PlanDODAO extends HibernateDaoSupport  {
 		// 释放数据库连接！！！
 		this.releaseSession(s);
 		if (logger.isDebugEnabled()) {
-			logger.debug("结束：从数据库中获取最大xh");
+			logger.debug("get maxID");
 		}
 		return maxBh+1;
 	

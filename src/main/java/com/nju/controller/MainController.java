@@ -37,10 +37,20 @@ public class MainController {
     public String getMain(HttpServletRequest request,HttpServletResponse response,
 			ModelMap model){
 //        List<RiskDO> riskList = riskService.getAllRisks();
+		String begin = request.getParameter("begin") ;
+		String end = request.getParameter("end") ;
+		if(begin.equals("undefined")||begin==""||begin==null){
+			begin = "2016-11-01" ;
+		}
+		if(end.equals("undefined")||end==""||end==null){
+			end = DateUtil.FormatDate(new Date()) ;
+		}
     	List<UserDO> users = userService.getAllUsers() ;
         UserDO user = (UserDO) request.getSession().getAttribute("user") ;
         model.addAttribute("user", user) ;
         model.addAttribute("followers", users) ;
+		model.addAttribute("begin",begin) ;
+		model.addAttribute("end",end) ;
 //      model.addAttribute("riskList", riskList) ;
         return "main" ; 
     }

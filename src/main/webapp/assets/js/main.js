@@ -1,7 +1,75 @@
+
+
+
 $(function(){
 	loadCourses() ;
+	loadRecognizedChart();
+	loadComeTrueChart() ;
 });
-
+function loadRecognizedChart(){
+	var kssj = $(#kssj).val() ;
+	var jssj = $(#jssj).val() ;
+	$.ajax({
+		url:"getRecognizedRiskList.aj",
+		type:"post" ,
+		dataType:"json" ,
+		data:{
+			kssj:kssj,
+			jssj:jssj
+		},
+		success:function(data){
+			var chart1= Highcharts.chart('bar1',{
+				chart:{
+					type:'bar'
+				},
+				title:{
+					text:'识别统计图'
+				},
+				xAxis:{
+					categories:data.riskName
+				},
+				yAxis:{
+					title:{
+						text:'次数'
+					}
+				},
+				series:data.time
+			}) ;
+		}
+	})
+}
+function loadComeTrueChart(){
+	var kssj = $(#kssj).val() ;
+	var jssj = $(#jssj).val() ;
+	$.ajax({
+		url:"getComeTrueRiskList.aj",
+		type:"post" ,
+		dataType:"json" ,
+		data:{
+			kssj:kssj,
+			jssj:jssj
+		},
+		success:function(data){
+			var chart1= Highcharts.chart('bar2',{
+				chart:{
+					type:'bar'
+				},
+				title:{
+					text:'演变统计图'
+				},
+				xAxis:{
+					categories:data.riskName
+				},
+				yAxis:{
+					title:{
+						text:'次数'
+					}
+				},
+				series:data.time
+			}) ;
+		}
+	})
+}
 //初始化风险列表
 function loadCourses() {
     $.ajax({

@@ -33,7 +33,7 @@ public class LoginController {
 	        return "login";
 	    }
 
-	    @RequestMapping(value = "logout.do" , method = RequestMethod.GET)
+	    @RequestMapping(value = "Logout.do" , method = RequestMethod.GET)
 	    public String logout(HttpSession session){
 	        
 	        session.removeAttribute("user");

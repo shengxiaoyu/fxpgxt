@@ -45,8 +45,23 @@
 </div>
 
 <div class="container-fluid">
-	<div class="col-md-12">
-		
+<div class="col-md-12">
+	<div class="sjxz">
+			<h4>时间选择：</h4>
+				<input id="kssj" type="date" value="${begin }">
+				<label>——</label>
+				<input id="jssj" type="date" value="${end }">
+				&nbsp&nbsp
+				<button id="sjxz-btn" class="btn btn-info">确定</button>
+			</div>
+		<div id="bar1" style="width:100%; hight=400px;">
+			
+		</div>
+		<br/>
+		<br/>
+		<div id="bar2" style="width:100%; hight=400px;">
+			
+		</div>
 	</div>
 </div>
 

@@ -25,7 +25,7 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"  aria-haspopup="true" aria-expanded="false">${user.name }</a>
                     <ul class="dropdown-menu">
                         <li><a href="#">个人中心</a></li>
-                        <li><a href="logout.do">退出</a></li>
+                        <li><a href="Logout.do">退出</a></li>
                     </ul>
                 </li>
             </ul>

@@ -43,7 +43,7 @@ public class FollowRiskController {
 		}
 		return "follow" ;
 	}
-	@RequestMapping(value = "followRisk.aj", method = RequestMethod.POST)
+	@RequestMapping(value = "followARisk.aj", method = RequestMethod.POST)
     public void followRisk(HttpServletRequest request,
 			HttpServletResponse response){
     	UserDO user = (UserDO) request.getSession().getAttribute("user") ;

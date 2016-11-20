@@ -40,7 +40,7 @@ $('#follow-btn').on('click',function(){
     var riskContent= $("#showRisk-content").val();
     var riskDescription = $("#showRisk-description").val();
         $.ajax({
-            url:"followRisk.aj",
+            url:"followARisk.aj",
             type:"post",
             data:{
                 id:id ,

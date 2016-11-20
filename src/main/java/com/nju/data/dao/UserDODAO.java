@@ -160,7 +160,6 @@ public class UserDODAO extends HibernateDaoSupport  {
 		Integer maxBh = 0;
 		if (query.uniqueResult() != null)
 			maxBh = (Integer) query.uniqueResult();
-		// 释放数据库连接！！！
 		this.releaseSession(s);
 		if (logger.isDebugEnabled()) {
 			logger.debug("get maxID");

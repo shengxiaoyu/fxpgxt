@@ -101,7 +101,7 @@ function loadChart(){
 //初始化风险列表
 function loadCourses() {
     $.ajax({
-        url:"getAllRisks.aj",
+        url:"getAllrisks.aj",
         type:"post",
         dataType:"json" ,
         success:function (data) {
@@ -188,7 +188,7 @@ $('#comfirm-add-btn').on('click',function(){
 
 
     $.ajax({
-        url:"addRisk.aj",
+        url:"addrisk.aj",
         type:"post",
         data:{
             riskName:riskName,

@@ -61,30 +61,22 @@ public class MainController {
     }
 
     
-    @RequestMapping(value = "getAllStudents.aj", method = RequestMethod.POST)
+    @RequestMapping(value = "getAllstudents.aj", method = RequestMethod.POST)
     @ResponseBody
     public List<UserDO> getAllStudents(){
         return userService.getAllUsers() ;
     }
    
 
-    @RequestMapping(value = "course", method = RequestMethod.GET)
-    public String course(){
-        return "/course";
-    }
+ 
 
-    @RequestMapping(value = "students", method = RequestMethod.GET)
-    public String students(){
-        return "/students";
-    }
-
-    @RequestMapping(value = "getAllRisks.aj", method = RequestMethod.POST)
+    @RequestMapping(value = "getAllrisks.aj", method = RequestMethod.POST)
     @ResponseBody
     public List<RiskDO> getAllRisks(){
         return riskService.getAllRisks();
     }
 
-    @RequestMapping(value = "addRisk.aj", method = RequestMethod.POST)
+    @RequestMapping(value = "addrisk.aj", method = RequestMethod.POST)
     public void addRisk(HttpServletRequest request,HttpServletResponse response,
 			ModelMap model){
     	String name = request.getParameter("riskName") ;
@@ -119,13 +111,13 @@ public class MainController {
 
 
 
-    @RequestMapping(value = "getRisk.aj", method = RequestMethod.POST)
+    @RequestMapping(value = "getrisk.aj", method = RequestMethod.POST)
     @ResponseBody
     public RiskDO getRisk(int risk_id){
         return riskService.getRisk(risk_id);
     }
 
-    @RequestMapping(value = "deleteRisk.aj", method = RequestMethod.POST)
+    @RequestMapping(value = "deleterisk.aj", method = RequestMethod.POST)
     @ResponseBody
     public void deleteRisk(String risk_id){
         System.out.println(risk_id);

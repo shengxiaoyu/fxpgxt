@@ -16,7 +16,9 @@ public class OpenSessionInViewFilter extends
 	}
 
 	protected void closeSession(Session session, SessionFactory factory) {
-		session.flush();
-		super.closeSession(session, factory);
+		if(session!=null){
+			session.flush();
+			super.closeSession(session, factory);
+		}
 	}
 }

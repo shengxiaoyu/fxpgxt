@@ -1,4 +1,7 @@
 
+$(function(){
+	loadCourses() ;
+});
 
 /**
  * 初始化退课模态框
@@ -42,7 +45,7 @@ function loadAddModal() {
         var modal = $(this)
         modal.find('.modal-title').html('添加风险')
 
-        $('#comfirm-add-btn')[0].onclick = function () {
+       $('#comfirm-add-btn').on('click',function(){
             var riskId = 0
             var riskName= $("#risk-name").val()
             var riskContent= $("#risk-content").val()
@@ -69,7 +72,7 @@ function loadAddModal() {
                     alert("添加失败");
                 }
             })
-        }
+        })
     })
 }
 
@@ -97,8 +100,8 @@ function loadCourses() {
                     '<td>' + riskCreator + '</td>' +
                     '<td>' + riskContent + '</td>' ;
 
-                content += '<td><a onclick="loadChooseRiskModal(this.id)" href="#" data-toggle="modal" data-target="#FollowAddModal" id=' + riskId + ':' + riskName + ':' + riskCreator  + ':' + riskContent+'>追踪</a></td>';
-                content += '<td><a onclick="loadDeleteRiskModal(this.id)" href="#" data-toggle="modal" data-target="#deleteRiskModal" id=' + riskId +'>删除</a></td>';
+                content += '<td><a onclick="loadChooseRiskModal(this.id)" href="#" data-toggle="modal" data-target="#FollowAddModal" id=' + riskId + ':' + riskName + ':' + riskCreator  + ':' + riskContent+'>指派</a></td>';
+                //content += '<td><a onclick="loadDeleteRiskModal(this.id)" href="#" data-toggle="modal" data-target="#deleteRiskModal" id=' + riskId +'>删除</a></td>';
 
 
                 content += '</tr>';
@@ -163,7 +166,7 @@ function followRisk() {
         var riskFollower= $("#showRisk-follower").val()
         var riskContent= $("#showRisk-content").val()
             $.ajax({
-                url:"followRisk.aj",
+                url:"assignRisk.aj",
                 type:"post",
                 data:{
                     id:riskId ,

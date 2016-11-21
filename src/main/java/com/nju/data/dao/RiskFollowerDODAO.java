@@ -1,8 +1,9 @@
 package com.nju.data.dao;
 
-import java.util.Date;
 import java.util.List;
 import org.hibernate.LockMode;
+import org.hibernate.Query;
+import org.hibernate.Session;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
@@ -28,13 +29,49 @@ public class RiskFollowerDODAO extends HibernateDaoSupport  {
 	public static final String INFLUENCE = "influence";
 	public static final String GATE = "gate";
 	public static final String RISK_FOLLOWERCOL = "riskFollowercol";
+	public static final String DESCRIPTION = "description";
 
 
 
 	protected void initDao() {
 		//do nothing
 	}
-    
+	public int getMaxId(){
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("get maxID");
+		}
+		String hql = "select max(id) from RiskFollowerDO";
+		Session s = this.getSession();
+		Query query = s.createQuery(hql);
+		Integer maxBh = 0;
+		if (query.uniqueResult() != null)
+			maxBh = (Integer) query.uniqueResult();
+		s.close() ;
+		if (logger.isDebugEnabled()) {
+			logger.debug("get maxID");
+		}
+		return maxBh+1;
+	
+	
+	}
+	public void update(RiskFollowerDO riskFollower){
+		getHibernateTemplate().update(riskFollower) ;
+	}
+	public List<RiskFollowerDO> getRecognizedRisks(String begin ,String  end){
+    	String hql = "from RiskFollowerDO where beginTime >='#BEGIN#' and beginTime<='#END#'" ;
+    	hql = hql.replaceAll("#BEGIN#", begin) ;
+    	hql = hql.replaceAll("#END#", end) ;
+    	List<RiskFollowerDO> result = getHibernateTemplate().find(hql) ;
+    	return result;
+    }
+    public List<RiskFollowerDO> getComeTrueRisks(String begin,String end){
+    	String hql = "from RiskFollowerDO where endTime <> null and (endTime >= '#BEGIN#' and endTime <= '#END#')" ;
+    	hql = hql.replaceAll("#END#",end) ;
+    	hql = hql.replaceAll("#BEGIN#", begin) ;
+    	List<RiskFollowerDO> result = getHibernateTemplate().find(hql) ;
+    	return result;
+    }
     public void save(RiskFollowerDO transientInstance) {
         log.debug("saving RiskFollowerDO instance");
         try {
@@ -128,6 +165,12 @@ public class RiskFollowerDODAO extends HibernateDaoSupport  {
 	public List<RiskFollowerDO> findByRiskFollowercol(Object riskFollowercol
 	) {
 		return findByProperty(RISK_FOLLOWERCOL, riskFollowercol
+		);
+	}
+	
+	public List<RiskFollowerDO> findByDescription(Object description
+	) {
+		return findByProperty(DESCRIPTION, description
 		);
 	}
 	
